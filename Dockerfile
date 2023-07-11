@@ -29,9 +29,11 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Open port 8000 to outside world
+EXPOSE 8000
+
 # django actions
 RUN python manage.py migrate
-RUN python manage.py runserver
 
 # UNCOMMENT TO TURN ON TRANSLATION COMPILE FILES
 #RUN python manage.py compilemessages --ignore venv
