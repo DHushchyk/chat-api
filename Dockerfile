@@ -28,7 +28,6 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
-RUN apt-get update && apt-get install -y gettext nano cron
 
 # django actions
 RUN python manage.py migrate

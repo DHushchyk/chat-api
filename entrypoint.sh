@@ -8,9 +8,6 @@ echo "# Applying permissions to static and media dirs: 'Other' Read & Execute"
 chmod -R o+rx /usr/src/app/media/
 chmod -R o+rx /usr/src/app/static/
 
-#echo "# Starting CRON"
-service cron stop
-
 echo "# Starting server"
 #gunicorn --access-logfile - --workers 3 -t 300 --log-level debug --bind 0.0.0.0:8000 core.wsgi:application
 gunicorn --access-logfile - --workers 3 -t 300 --log-level debug --bind 0.0.0.0:8000 core.wsgi:application

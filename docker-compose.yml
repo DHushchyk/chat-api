@@ -25,28 +25,6 @@ services:
       - 8209:8000
     env_file:
       - .env
-  cron:
-    build:
-      context: .
-      args:
-        - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
-        - DEBUG=${DEBUG}
-        - SECRET_KEY=${SECRET_KEY}
-        - DB_PSQL_NAME=${DB_PSQL_NAME}
-        - DB_PSQL_USER=${DB_PSQL_USER}
-        - DB_PSQL_PASSWORD=${DB_PSQL_PASSWORD}
-        - DB_PSQL_HOST=${DB_PSQL_HOST}
-        - DB_PSQL_PORT=${DB_PSQL_PORT}
-        - DEBIAN_FRONTEND=noninteractive
-    image: "chat-api:latest"
-    container_name: "chat-api-cron"
-    entrypoint: ["cron", "-f", "&&", "tail", "-f", "/var/log/cron"]
-    volumes:
-      - /home/chat-api/static:/usr/src/app/static # Static Sync
-      - /home/chat-api/media:/usr/src/app/media # Media Sync
-      - /home/chat-api/logs:/usr/src/app/logs # Media Sync
-    env_file:
-      - .env
   nginx:
     image: nginx
     container_name: "chat-api-api-nginx"
