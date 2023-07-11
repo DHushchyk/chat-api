@@ -32,7 +32,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # django actions
 RUN python manage.py migrate
 
-RUN crontab /usr/src/app/cron
 # UNCOMMENT TO TURN ON TRANSLATION COMPILE FILES
 #RUN python manage.py compilemessages --ignore venv
 
