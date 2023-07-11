@@ -22,6 +22,7 @@ ARG DB_PSQL_PORT
 
 # add app
 COPY . .
+COPY .env /usr/src/app/.env
 RUN chmod +x /usr/src/app/entrypoint.sh
 
 # install dependencies
