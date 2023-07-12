@@ -20,23 +20,18 @@ ARG DB_PSQL_PASSWORD
 ARG DB_PSQL_HOST
 ARG DB_PSQL_PORT
 
-# add app
-COPY . .
-COPY .env /usr/src/app/.env
-RUN chmod +x /usr/src/app/entrypoint.sh
+# copy the whole project to your docker home directory.
+COPY . $DockerHOME
 
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Open port 8000 to outside world
-EXPOSE 8000
+# port where the Django app runs
+EXPOSE 5000
 
 # django actions
 RUN python manage.py migrate
 
-# UNCOMMENT TO TURN ON TRANSLATION COMPILE FILES
-#RUN python manage.py compilemessages --ignore venv
-
-
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# start the server on port 5000, this is what EB listens for
+CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
