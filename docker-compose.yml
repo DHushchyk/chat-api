@@ -22,6 +22,6 @@ services:
       - /home/chat-api/media:/usr/src/app/media # Media Sync
       - /home/chat-api/logs:/usr/src/app/logs # Media Sync
     ports:
-      - 8209:8000
+      - 8000:8000
     env_file:
       - .env
